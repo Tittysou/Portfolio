@@ -128,9 +128,35 @@
                 min-width: 100%;
             }
         }
+
+        .web-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+          }
+          
+          .web-line {
+            stroke: white;
+            stroke-width: 0.5;
+            fill: none;
+            opacity: 0;
+            animation: webFade 8s infinite;
+          }
+          
+          @keyframes webFade {
+            0% { opacity: 0; stroke-dashoffset: 1000; }
+            50% { opacity: 0.5; stroke-dashoffset: 0; }
+            100% { opacity: 0; stroke-dashoffset: -1000; }
+          }
     </style>
 </head>
 <body class="text-white">
+    <svg class="web-background" id="webBackground"></svg>
     <nav class="fixed w-full bg-black/90 backdrop-blur-sm z-50 border-b border-white/10">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
@@ -422,6 +448,71 @@
 
             fetchGitHubRepos();
         });
+
+        function createWeb() {
+            const svg = document.getElementById('webBackground');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+            
+            // Clear existing lines
+            svg.innerHTML = '';
+            
+            // Create multiple web lines
+            for (let i = 0; i < 300; i++) {
+              const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+              const startX = Math.random() * width;
+              const startY = Math.random() * height;
+              const endX = startX + (Math.random() - 0.5) * 300;
+              const endY = startY + (Math.random() - 0.5) * 300;
+              const controlX = (startX + endX) / 2 + (Math.random() - 0.5) * 200;
+              const controlY = (startY + endY) / 2 + (Math.random() - 0.5) * 200;
+              
+              line.setAttribute('d', `M ${startX} ${startY} Q ${controlX} ${controlY} ${endX} ${endY}`);
+              line.classList.add('web-line');
+              line.style.animationDelay = `${Math.random() * 8}s`;
+              line.style.strokeDasharray = '1000';
+              
+              svg.appendChild(line);
+            }
+          }
+      
+          // Initial creation
+          createWeb();
+          
+          // Recreate on resize
+          let resizeTimeout;
+          window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(createWeb, 250);
+          });
+          
+          // Periodically add new webs
+          setInterval(() => {
+            const svg = document.getElementById('webBackground');
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            const startX = Math.random() * width;
+            const startY = Math.random() * height;
+            const endX = startX + (Math.random() - 0.5) * 300;
+            const endY = startY + (Math.random() - 0.5) * 300;
+            const controlX = (startX + endX) / 2 + (Math.random() - 0.5) * 200;
+            const controlY = (startY + endY) / 2 + (Math.random() - 0.5) * 200;
+            
+            line.setAttribute('d', `M ${startX} ${startY} Q ${controlX} ${controlY} ${endX} ${endY}`);
+            line.classList.add('web-line');
+            line.style.animationDelay = '0s';
+            line.style.strokeDasharray = '1000';
+            
+            svg.appendChild(line);
+            
+            // Remove old lines if there are too many
+            if (svg.children.length > 50) {
+              svg.removeChild(svg.children[0]);
+            }
+          }, 2000);
     </script>
 </body>
 </html>

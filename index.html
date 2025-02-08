@@ -153,6 +153,56 @@
             50% { opacity: 0.5; stroke-dashoffset: 0; }
             100% { opacity: 0; stroke-dashoffset: -1000; }
           }
+
+          .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3B82F6, #60A5FA);
+            transition: width 1s ease-out;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3B82F6;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="text-white">
@@ -164,7 +214,8 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#work" class="hover:text-gray-300 transition-colors">Work</a>
                     <a href="#about" class="hover:text-gray-300 transition-colors">About</a>
-                    <a href="#contact" class="hover:text-gray-300 transition-colors">Contact</a>
+                    <a href="#skills" class="hover:text-gray-300 transition-colors">Skills</a>
+                    <a href="#testimonials" class="hover:text-gray-300 transition-colors">Testimonials</a>
                 </div>
                 <a href="#contact" class="modern-button px-6 py-2 rounded-lg text-sm font-medium">
                     Contact
@@ -241,6 +292,107 @@
         </div>
     </section>
 
+        <section id="skills" class="py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12">Skills & Expertise</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Frontend Development</span>
+                                <span class="text-gray-400">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Backend Development</span>
+                                <span class="text-gray-400">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">C++ Desktop Development</span>
+                                <span class="text-gray-400">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">C# Unity Game Development</span>
+                                <span class="text-gray-400">100%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Javascript - Discord Development</span>
+                                <span class="text-gray-400">98%%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python - Discord Development</span>
+                                <span class="text-gray-400">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="testimonials" class="py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12">Client Testimonials</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="testimonial-card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="ml-4">
+                                <h4 class="font-bold">Sarah Johnson</h4>
+                                <p class="text-gray-400 text-sm">Customer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">"Exceptional work! Delivered our project on time and exceeded expectations. Highly recommended for any web development needs."</p>
+                    </div>
+                    <div class="testimonial-card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="ml-4">
+                                <h4 class="font-bold">Mark Thompson</h4>
+                                <p class="text-gray-400 text-sm">Customer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">"Great communication and technical expertise. Helped us optimize our application performance significantly."</p>
+                    </div>
+                    <div class="testimonial-card p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="ml-4">
+                                <h4 class="font-bold">Emily Chen</h4>
+                                <p class="text-gray-400 text-sm">Customer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">"A pleasure to work with. Brings creative solutions to complex problems and delivers high-quality code."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     <div id="alert" class="alert fixed top-4 right-4 p-4 rounded-lg z-50 max-w-sm"></div>
 
     <section id="contact" class="py-24">
@@ -262,6 +414,43 @@
             </div>
         </div>
     </section>
+
+    <footer class="py-12 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">titsou.</h3>
+                    <p class="text-gray-400">Building digital experiences that make a difference.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#work" class="hover:text-white">Work</a></li>
+                        <li><a href="#about" class="hover:text-white">About</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">GitHub</a></li>
+                        <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-white">Twitter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <form class="space-y-4">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30">
+                        <button class="modern-button px-6 py-2 rounded-lg text-sm font-medium w-full">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
+                <p>&copy; 2024 titsou. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

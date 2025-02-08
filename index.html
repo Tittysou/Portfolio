@@ -455,10 +455,8 @@
             const height = window.innerHeight;
             svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
             
-            // Clear existing lines
             svg.innerHTML = '';
             
-            // Create multiple web lines
             for (let i = 0; i < 300; i++) {
               const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
               const startX = Math.random() * width;
@@ -477,17 +475,14 @@
             }
           }
       
-          // Initial creation
           createWeb();
           
-          // Recreate on resize
           let resizeTimeout;
           window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(createWeb, 250);
           });
           
-          // Periodically add new webs
           setInterval(() => {
             const svg = document.getElementById('webBackground');
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -508,7 +503,6 @@
             
             svg.appendChild(line);
             
-            // Remove old lines if there are too many
             if (svg.children.length > 50) {
               svg.removeChild(svg.children[0]);
             }

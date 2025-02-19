@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>titsou | Full Stack Developer</title>
+    <title>titsou.js | Full Stack Developer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -203,6 +203,62 @@
         .testimonial-card:hover {
             transform: translateY(-5px);
         }
+
+        .toast {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-left: 3px solid #10B981;
+        }
+
+        .toast.error {
+            border-left: 3px solid #EF4444;
+        }
+
+        .toast-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            transform-origin: left;
+        }
+
+        .toast.success .toast-progress::after {
+            background: #10B981;
+        }
+
+        .toast.error .toast-progress::after {
+            background: #EF4444;
+        }
+
+        .toast-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scaleX(0);
+            animation: progress 5s linear forwards;
+        }
+
+        @keyframes progress {
+            to { transform: scaleX(1); }
+        }
     </style>
 </head>
 <body class="text-white">
@@ -210,7 +266,7 @@
     <nav class="fixed w-full bg-black/90 backdrop-blur-sm z-50 border-b border-white/10">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="#top" class="text-2xl font-bold">titsou.</a>
+                <a href="#top" class="text-2xl font-bold">titsou.js</a>
                 <div class="hidden md:flex space-x-8">
                     <a href="#work" class="hover:text-gray-300 transition-colors">Work</a>
                     <a href="#about" class="hover:text-gray-300 transition-colors">About</a>
@@ -271,8 +327,7 @@
             <div class="max-w-3xl mx-auto text-center">
                 <h2 class="text-4xl font-bold mb-8">About Me</h2>
                 <p class="text-gray-400 text-lg mb-12">
-                    Passionate developer with 5+ years of experience in building scalable web applications. 
-                    Specializing in modern JavaScript frameworks and cloud architecture.
+                    Experienced and passionate developer with 2+ years of expertise in crafting high-performance web applications, scalable backend systems, and immersive game experiences. Proficient in modern JavaScript frameworks, cloud architecture, and C# Unity development. Adept at building seamless user interfaces, optimizing backend logic, and creating engaging Discord bots. Always pushing the boundaries of technology to deliver innovative and efficient solutions.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="github-card p-6 rounded-lg">
@@ -280,7 +335,7 @@
                         <p class="text-gray-400">Projects Completed</p>
                     </div>
                     <div class="github-card p-6 rounded-lg">
-                        <h3 class="text-3xl font-bold mb-2">5+</h3>
+                        <h3 class="text-3xl font-bold mb-2">2+</h3>
                         <p class="text-gray-400">Years Experience</p>
                     </div>
                     <div class="github-card p-6 rounded-lg">
@@ -393,7 +448,7 @@
             </div>
         </section>
 
-    <div id="alert" class="alert fixed top-4 right-4 p-4 rounded-lg z-50 max-w-sm"></div>
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-4"></div>
 
     <section id="contact" class="py-24">
         <div class="container mx-auto px-6">
@@ -419,7 +474,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
-                    <h3 class="text-2xl font-bold mb-4">titsou.</h3>
+                    <h3 class="text-2xl font-bold mb-4">titsou.js</h3>
                     <p class="text-gray-400">Building digital experiences that make a difference.</p>
                 </div>
                 <div>
@@ -433,24 +488,23 @@
                 <div>
                     <h4 class="font-bold mb-4">Connect</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">GitHub</a></li>
-                        <li><a href="#" class="hover:text-white">LinkedIn</a></li>
-                        <li><a href="#" class="hover:text-white">Twitter</a></li>
+                        <li><a href="https://github.com/Tittysou" class="hover:text-white">GitHub</a></li>
+                        <li><a href="https://discordapp.com/users/1099359826699620453" class="hover:text-white">Discord</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4">Newsletter</h4>
-                    <form class="space-y-4">
-                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-white/30">
-                        <button class="modern-button px-6 py-2 rounded-lg text-sm font-medium w-full">Subscribe</button>
-                    </form>
+                    <h4 class="font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#contact" class="hover:text-white">Web Design</a></li>
+                        <li><a href="#development" class="hover:text-white">Development</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
                 <p>&copy; 2024 titsou. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </footer>    
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -621,21 +675,135 @@
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const button = form.querySelector('button');
+                
                 button.disabled = true;
                 button.textContent = 'Sending...';
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                button.textContent = 'Message Sent!';
-                form.reset();
-                
-                setTimeout(() => {
+                try {
+                    const formData = {
+                        name: form.querySelector('[name="name"]').value,
+                        email: form.querySelector('[name="email"]').value,
+                        message: form.querySelector('[name="message"]').value
+                    };
+
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    let data;
+                    try {
+                        data = await response.json();
+                    } catch (jsonError) {
+                        throw new Error('Server error: Please try again later');
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(data?.error || 'Failed to send message');
+                    }
+
+                    showToast('Message sent successfully!', 'success');
+                    form.reset();
+
+                } catch (error) {
+                    showToast(error.message || 'Failed to send message', 'error');
+                } finally {
                     button.disabled = false;
                     button.textContent = 'Send Message';
-                }, 2000);
+                }
             });
 
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type} p-4 rounded-lg text-white min-w-[300px] max-w-sm flex items-start`;
+                
+                const icon = type === 'success' ? 
+                    '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>' : 
+                    '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+
+                toast.innerHTML = `
+                    <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full mr-3 ${
+                        type === 'success' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'
+                    }">${icon}</div>
+                    <div class="flex-1">
+                        <h4 class="font-medium mb-1">${type === 'success' ? 'Success' : 'Error'}</h4>
+                        <p class="text-sm text-gray-300">${message}</p>
+                    </div>
+                    <button onclick="this.parentElement.remove()" class="ml-4 text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    <div class="toast-progress"></div>
+                `;
+                
+                container.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('show'));
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400);
+                }, 5000);
+            }
+
             fetchGitHubRepos();
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const progress = bar.style.width;
+                bar.style.width = '0%';
+                
+                gsap.to(bar, {
+                    scrollTrigger: {
+                        trigger: bar,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    width: progress,
+                    duration: 1.5,
+                    ease: "power2.out"
+                });
+            });
+
+            const testimonials = document.querySelectorAll('.testimonial-card');
+            testimonials.forEach((card, index) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    x: index % 2 === 0 ? -50 : 50,
+                    duration: 1,
+                    delay: index * 0.2,
+                    ease: "power2.out"
+                });
+            });
         });
 
         function createWeb() {
